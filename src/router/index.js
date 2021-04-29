@@ -40,7 +40,13 @@ const routes = [
         path: '/',
         name: 'Admin',
         component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Admin.vue'),
-      }
+      },
+      {
+        path: 'categoria',
+        name: 'Categoria',
+        component: () => import(/* webpackChunkName: "categoria" */ '../views/admin/categoria/ListaCategoria.vue'),
+      },
+      
     ]
   }
 ]
