@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { authGuard } from '../guards/authGuard'
 
 Vue.use(VueRouter)
 
@@ -35,10 +36,12 @@ const routes = [
     path: '/admin',
     name: 'BaseAdmin',
     component: () => import(/* webpackChunkName: "baseadmin" */ '../views/templates/BaseAdmin.vue'),
+    beforeEnter: authGuard,
     children: [
       {
         path: '/',
         name: 'Admin',
+        //meta: {requiresAuth:true},
         component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Admin.vue'),
       },
       {
