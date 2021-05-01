@@ -204,7 +204,7 @@ export default {
         model: false,
         children: [
           { icon: "mdi-plus", text: "Nuevo Cliente", url:"/admin/cliente/nuevo" },
-          { icon: "mdi-plus", text: "Lista Productos", url:"/admin/cliente" }
+          { icon: "mdi-plus", text: "Lista Clientes", url:"/admin/cliente" }
         ],
       },
       {

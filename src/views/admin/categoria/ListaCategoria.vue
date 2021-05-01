@@ -119,9 +119,15 @@ export default {
 
     methods: {
       async initialize () {
-        let datos = await listaCategoria();
-        console.log(datos);
-        this.desserts = datos.data.data
+        try{
+          let datos = await listaCategoria();
+          console.log(datos);
+          this.desserts = datos.data.data
+        }catch(error){
+          console.log(error);
+          localStorage.clear();
+          this.$router.push("/login")
+        }
         
       },
 

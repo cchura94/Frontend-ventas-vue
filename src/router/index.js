@@ -49,6 +49,23 @@ const routes = [
         name: 'Categoria',
         component: () => import(/* webpackChunkName: "categoria" */ '../views/admin/categoria/ListaCategoria.vue'),
       },
+      {
+        path: 'cliente',
+        name: 'Cliente',
+        component: () => import(/* webpackChunkName: "cliente" */ '../views/admin/cliente/Cliente.vue'),
+        children: [
+          {
+            path: '/',
+            name: 'ListaCliente',
+            component: () => import(/* webpackChunkName: "lista-cliente" */ '../views/admin/cliente/ListaCliente.vue'),
+          },
+          {
+            path: 'nuevo',
+            name: 'NuevoCliente',
+            component: () => import(/* webpackChunkName: "nuevo-cliente" */ '../views/admin/cliente/NuevoCliente.vue'),
+          },
+        ]
+      },
       
     ]
   }
