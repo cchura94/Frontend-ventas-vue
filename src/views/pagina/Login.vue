@@ -43,6 +43,30 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+       right
+       shaped
+       top
+      color="red accent-4"
+      elevation="24"
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="ligth"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
+
   </v-container>
 </template>
 
@@ -55,16 +79,23 @@ export default {
         email: "",
         password: "",
       },
+      snackbar: false,
+      text: 'Error de Autenticación',
+      timeout: 3000,
     };
   },
   methods: {
     async login() {
+      try{
       let auth = await authService.login(this.usuario);
-      console.log(auth.data);
+      console.log(auth);
       // guardamos el token
       localStorage.setItem("auth", btoa(JSON.stringify(auth.data)));
       // redireccionamos
       this.$router.push("/admin");
+      }catch(error){
+        this.snackbar = true
+      }
     },
   },
 };

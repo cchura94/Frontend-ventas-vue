@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>Nuevo Cliente</h1>
-    <v-form v-model="valid">
+    <v-form ref="form" v-model="valid" >
     <v-container>
       <v-row>
         <v-col
@@ -35,7 +35,7 @@
           md="6"
         >
           <v-text-field
-            v-model="correo"
+            v-model="email"
             :rules="emailRules"
             label="Ingrese su Correo"
             required
@@ -61,6 +61,7 @@
             label="Telefono"
           ></v-text-field>
         </v-col>
+        <v-btn color="primary" @click="registrarCliente()" :disabled="!valid">Guardar Cliente</v-btn>
       </v-row>
     </v-container>
   </v-form>
@@ -69,6 +70,7 @@
 </template>
 
 <script>
+import { guardarCliente } from '../../../services/clienteService'
 export default {
 data: () => ({
       valid: false,
@@ -89,6 +91,29 @@ data: () => ({
       ],
       telefono: ''
     }),
+    methods: {
+      async registrarCliente(){
+        try{
+          this.validate();
+
+          if(this.valid){
+            let clie = {
+              nombres: this.nombres,
+              apellidos: this.apellidos,
+              correo: this.email,
+              ci_nit: this.ci_nit,
+              telefono: this.telefono
+            }
+            await guardarCliente(clie);
+          }
+        }catch(error){
+          console.log(error)
+        }        
+      },
+      validate () {
+        this.$refs.form.validate()
+      },
+    }
   }
 
 </script>

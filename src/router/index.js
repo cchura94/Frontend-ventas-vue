@@ -66,6 +66,23 @@ const routes = [
           },
         ]
       },
+      {
+        path: 'producto',
+        name: 'Producto',
+        component: () => import(/* webpackChunkName: "producto" */ '../views/admin/producto/Producto.vue'),
+        children: [
+          {
+            path: '/',
+            name: 'ListaProducto',
+            component: () => import(/* webpackChunkName: "lista-producto" */ '../views/admin/producto/ListaProducto.vue'),
+          },
+          {
+            path: 'nuevo',
+            name: 'NuevoProducto',
+            component: () => import(/* webpackChunkName: "nuevo-producto" */ '../views/admin/producto/NuevoProducto.vue'),
+          },
+        ]
+      },
       
     ]
   }
